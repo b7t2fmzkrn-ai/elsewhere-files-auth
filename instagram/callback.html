@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-74Ura8ByRlZu6xo5O32MCdPHWNMDJWRjQvNzfA54Qns='; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+<title>ELSEWHERE FILES – Login</title>
+<style>body{font:16px/1.5 -apple-system,system-ui,sans-serif;background:#F7F2E9;color:#1B2933;max-width:640px;margin:40px auto;padding:0 16px}h1{font-size:20px}textarea{width:100%;height:120px;font:12px ui-monospace,monospace;word-break:break-all}button{margin-top:8px;padding:8px 16px;background:#4B8D87;color:#fff;border:0;border-radius:6px;font-size:15px}small{color:#555}</style>
+</head><body>
+<h1>ELSEWHERE FILES – Instagram-Verbindung</h1>
+<p id="msg">Prüfe Adresse …</p>
+<textarea id="out" readonly hidden></textarea>
+<button id="copy" hidden>Kopieren</button>
+<p><small>Diese Seite speichert und sendet nichts. Sie lädt keine fremden Skripte, setzt keine Cookies und entfernt den Code sofort aus der Adresszeile und dem Verlauf.</small></p>
+<script>(function(){var p=new URLSearchParams(location.search),c=p.get("code"),s=p.get("state"),e=p.get("error"),o=document.getElementById("out"),m=document.getElementById("msg"),b=document.getElementById("copy");
+history.replaceState(null,"",location.pathname);
+if(e){m.textContent="Login abgebrochen/abgelehnt: "+e+" "+(p.get("error_description")||"");return;}
+if(!c||!s||!/^[A-Za-z0-9_\-.#=]{10,4096}$/.test(c)||!/^[A-Za-z0-9_\-]{8,128}$/.test(s)){m.textContent="Kein gültiger Code in der Adresse. Bitte den Login im Terminal neu starten.";return;}
+o.value="code="+encodeURIComponent(c.split("#")[0])+"&state="+encodeURIComponent(s);o.hidden=false;b.hidden=false;
+m.textContent="Login erfolgreich. Text kopieren und im Terminal einfügen. Der Code ist nur kurz gültig und ohne App-Secret wertlos.";
+b.onclick=function(){o.select();(navigator.clipboard?navigator.clipboard.writeText(o.value):Promise.reject()).then(function(){b.textContent="Kopiert ✓";},function(){document.execCommand("copy");b.textContent="Kopiert ✓";});};})();</script>
+</body></html>
